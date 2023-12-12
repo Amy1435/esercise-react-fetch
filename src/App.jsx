@@ -18,6 +18,17 @@ function App() {
         fetchPost();
     }, []);
 
+    const fetchPostByValue = async () => {
+        const response = await fetch(
+            `https://restcountries.com/v3.1/name/${searchValue}`
+        );
+        const obj = await response.json();
+        setCountryData(obj);
+    };
+
+    const onSearch = async () => {
+        await fetchPostByValue();
+    };
     return (
         <>
             <SearchBar
