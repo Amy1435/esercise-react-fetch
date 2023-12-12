@@ -3,7 +3,7 @@ const CountryCards = ({ countryName, flagUrl, population, capital }) => {
         <figure>
             <h2>Country: {countryName}</h2>
             <img src={flagUrl}></img>
-            <p>Population: {population}</p>
+            <p>Population: {population} people</p>
             <p>Capital: {capital}</p>
         </figure>
     );
