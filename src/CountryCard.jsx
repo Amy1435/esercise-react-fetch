@@ -1,11 +1,22 @@
 const CountryCards = ({ countryName, flagUrl, population, capital }) => {
     return (
-        <figure>
-            <h2>Country: {countryName}</h2>
-            <img src={flagUrl}></img>
-            <p>Population: {population} people</p>
-            <p>Capital: {capital}</p>
-        </figure>
+        <div className="card-container">
+            <div className="country-name">
+                <h2>{countryName}</h2>
+            </div>
+
+            <img src={flagUrl} alt="country-flag"></img>
+            <div className="country-info-container">
+                <p>
+                    <strong>Population: </strong>
+                    {population} people
+                </p>
+                <p>
+                    <strong>Capital: </strong>
+                    {capital}
+                </p>
+            </div>
+        </div>
     );
 };
 

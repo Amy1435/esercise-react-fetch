@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./App.css";
+import "./App.scss";
 import CountryCards from "./CountryCard";
 import { useEffect } from "react";
 import SearchBar from "./SearchBar";
@@ -9,8 +9,9 @@ function App() {
     const [searchValue, setSearchValue] = useState("");
 
     const fetchPost = async () => {
-        const response = await fetch("https://restcountries.com/v3.1/all");
-        const obj = await response.json();
+        const response = await fetch("https://restcountries.com/v3.1/all"); // fetch e' una promise, quando e' risolta ci ritorna una response
+        const obj = await response.json(); //response.json() ritorna una promise, che ritorna un oggetto
+        console.log(obj);
         setCountryData(obj);
     };
 
@@ -18,17 +19,15 @@ function App() {
         fetchPost();
     }, []);
 
-    const fetchPostByValue = async () => {
+    const onSearch = async () => {
         const response = await fetch(
             `https://restcountries.com/v3.1/name/${searchValue}`
         );
         const obj = await response.json();
+
         setCountryData(obj);
     };
 
-    const onSearch = async () => {
-        await fetchPostByValue();
-    };
     return (
         <>
             <SearchBar
@@ -36,16 +35,18 @@ function App() {
                 onChange={(e) => setSearchValue(e.target.value)}
                 onSearch={onSearch}
             />
-            {countryData &&
-                countryData.map((country, i) => (
-                    <CountryCards
-                        key={i}
-                        countryName={country.altSpellings[1]}
-                        flagUrl={country.coatOfArms.png}
-                        population={country.population}
-                        capital={country.capital}
-                    />
-                ))}
+            <div className="country-data-container">
+                {countryData &&
+                    countryData.map((country, i) => (
+                        <CountryCards
+                            key={i}
+                            countryName={country.name.common}
+                            flagUrl={country.flags.png}
+                            population={country.population}
+                            capital={country.capital}
+                        />
+                    ))}
+            </div>
         </>
     );
 }

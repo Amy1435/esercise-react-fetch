@@ -1,8 +1,11 @@
 const SearchBar = ({ value, onChange, onSearch }) => {
     return (
-        <div>
-            <input value={value} onChange={onChange} />
-            <button onClick={onSearch}>Find country</button>
+        <div className="search-container">
+            <h1>Search Countries by Name:</h1>
+            <div className="search-input-container">
+                <input value={value} onChange={onChange} />
+                <button onClick={onSearch}>Search</button>
+            </div>
         </div>
     );
 };
